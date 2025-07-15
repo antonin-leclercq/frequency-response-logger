@@ -1,0 +1,17 @@
+pc-code/.vs
+pc-code/Debug
+pc-code/pc-code
+pc-code/pc-code.sln
+pc-code/pc-code.vcxproj
+pc-code/pc-code.vcxproj.filters
+pc-code/pc-code.vcxproj.user
+pc-code/response.csv
+STM32/.metadata
+STM32/using-fft/.settings
+STM32/using-fft/Debug
+STM32/using-fft/.cproject
+STM32/using-fft/.project
+STM32/using-rms/.settings
+STM32/using-rms/Debug
+STM32/using-rms/.cproject
+STM32/using-rms/.project
