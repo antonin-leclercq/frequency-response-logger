@@ -23,6 +23,17 @@ Two different approaches are considered on the microcontroller side:
 - in `./using-fft`, the ARM DSP library is used to first do an FFT on the samples to obtain the amplitude
 - in `./using-rms`, the microcontroller does an averaging of the samples to obtain the amplitude
 
+In both cases the sampling is done by the internal 12-bit ADC, triggered by a timer. The interval between each trigger varies with the frequency of the test signal.
+The conversion results are then copied to RAM using DMA.
+
 ### Using FFT
 
+Since the input is strictly real, only an RFFT is necessary. Here the data type is integer, so the RFFT is done by calling `arm_rfft_q15`. The input and output formats depend on the number of input samples and can we found on the [online](https://arm-software.github.io/CMSIS-DSP/v1.14.2/group__RealFFT.html#ga00e615f5db21736ad5b27fb6146f3fc5).
+However, since only the variation of amplitude is relevant, the actual format does not matter much. 
+For single component signals, the microcontroller is able to find the peak frequency accurately. 
+The amplitude however, which is the actual unknown, varies significantly (and seemingly randomly) when slightly varying the frequency (even without a DUT). A windowing function has been applied but without success.
+For now, this approach is far from reliable to perform a frequency response. 
+
+
 ### Using RMS
+
